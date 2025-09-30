@@ -102,6 +102,56 @@ else:
   print("No") 
 
 #10
+a = int(input("nhập vào số nguyên :"))
+b = int(input("nhập vào số nguyên :"))
+c = int(input("nhập vào số nguyên :"))
+d = int(input("nhập vào số nguyên :"))
+max = max(a,b,c,d)
+print(max)
+
+#11
+a = int(input("Nhập số nguyên dương a: "))
+b = int(input("Nhập số nguyên dương b: "))
+c = int(input("Nhập số nguyên dương c: "))
+if a <= 0 or b <= 0 or c <= 0:
+  print("Lỗi: Cả ba số phải là số nguyên dương.")
+if (a + b < c) and (a + c < b) and (b + c < a):
+    print("không phải tam giác")
+elif (a == b) or (a == c) or (b == c):
+    print("đây là tam giác cân")
+elif (a == b == c) :
+    print("đây là tam giác đều")
+else :
+    print("đây là tam giác thường")
+
+#12
+a = int(input("nhập vào một năm :"))
+if a % 4 == 0 and a % 100 != 0:
+  print("YES")
+elif a % 400 == 0 :
+  print("YES")
+else : 
+  print("NO")
+
+#13
+a = int(input("nhập số kWh điện tiêu thụ :"))
+if 0 <= a <= 50 :
+    print ("Số tiền điện là : ", a*1500, "đồng")
+if 51 <= a < 100 : 
+    print("Số tiền điện là : ", (a-50)*2000 + 50*1500 , "đồng")
+if a >= 100 :
+    print("Số tiền điện là : ", (a-100)*3000 + 50*2000 + 50*1500, "đồng")
+
+#14
+
+
+
+    
+
+
+
+
+
 
 
 
