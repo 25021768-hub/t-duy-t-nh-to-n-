@@ -1,3 +1,33 @@
+#1
+def in_chu_so_dao_nguoc_chuoi(n):
+    chuoi_so = str(n)
+    if chuoi_so.startswith('-'):
+        phan_so = chuoi_so[1:]
+        dao_nguoc_phan_so = phan_so[::-1]
+        ket_qua = "-" + dao_nguoc_phan_so
+    else:
+        ket_qua = chuoi_so[::-1]
+    if ket_qua.startswith('-'):
+        print(int(ket_qua))
+    else:
+        print(int(ket_qua))
+try:
+    so_nguyen = int(input("\nNhập vào một số nguyên n: "))
+    
+    print("\nKết quả (Phương pháp Chuỗi):")
+    in_chu_so_dao_nguoc_chuoi(so_nguyen)
+except ValueError:
+    print("Lỗi: Đầu vào không phải là số nguyên hợp lệ.")
+
+#2
+def hoan_doi_xor(a, b):
+    print(f"Trước khi hoán đổi: a = {a}, b = {b}")
+    a = a ^ b
+    b = a ^ b
+    a = a ^ b    
+    print(f"Sau khi hoán đổi: a = {a}, b = {b}")
+    return a, b
+
 #3
 def kiem_tra_luy_thua_cua_2(n):
     if n <= 0:
@@ -72,4 +102,5 @@ else:
   print("No") 
 
 #10
+
 
