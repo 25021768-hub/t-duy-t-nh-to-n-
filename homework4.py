@@ -143,6 +143,66 @@ if a >= 100 :
     print("Số tiền điện là : ", (a-100)*3000 + 50*2000 + 50*1500, "đồng")
 
 #14
+import math
+a = float(input("Nhập vào hệ số a"))
+b = float(input("Nhập vào hệ số b"))
+if a == 0:
+  if b == 0:
+    print("Vô số nghiệm")
+  else:
+    print("Vô nghiệm")
+else:
+  x = -b / a
+  x_lam_tron = round(x, 2)
+  print(f"Nghiệm của phương trình là: {x_lam_tron}")
+
+#15
+a = float(input("Nhập vào điểm trung bình"))
+if a >= 8.0 :
+    print("Học sinh giỏi")
+elif 6.5 <= a < 8.0 :
+    print("Học sinh khá")
+elif 5.0 <= a <= 6.5 : 
+    print("Học sinh trung bình")
+else :
+    print("Học sinh yếu")
+
+#17
+def lam_tron_thu_cong(so_thuc_str):
+  x = float(so_thuc_str)
+  lam_tron_xuong = int(x)
+  if x < 0 and x != lam_tron_xuong:
+      lam_tron_xuong = lam_tron_xuong - 1
+  if x == int(x):
+      lam_tron_len = int(x)
+  elif x > 0:
+      lam_tron_len = int(x) + 1
+  else: 
+      lam_tron_len = int(x)
+  if x >= 0:
+      lam_tron_gan_nhat = int(x + 0.5)
+  else: 
+      lam_tron_gan_nhat = int(x - 0.5)
+  return f"{lam_tron_len} {lam_tron_xuong} {lam_tron_gan_nhat}"
+so_nhap_vao = input("Nhập vào một số thực: ")
+ket_qua = lam_tron_thu_cong(so_nhap_vao)
+print(ket_qua)
+
+#18
+a = int(input("Nhập số nguyên dương a: "))
+b = int(input("Nhập số nguyên dương b: "))
+c = int(input("Nhập số nguyên dương c: "))
+if a <= 0 or b <= 0 or c <= 0:
+  print("Lỗi: Cả ba số phải là số nguyên dương.")
+if (a + b < c) and (a + c < b) and (b + c < a):
+    print("không phải tam giác")
+elif (a == b) or (a == c) or (b == c):
+    print("đây là tam giác cân")
+elif (a == b == c) :
+    print("đây là tam giác đều")
+else :
+    print("đây là tam giác thường")
+
 
 
 
