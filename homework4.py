@@ -11,13 +11,10 @@ def in_chu_so_dao_nguoc_chuoi(n):
         print(int(ket_qua))
     else:
         print(int(ket_qua))
-try:
-    so_nguyen = int(input("\nNhập vào một số nguyên n: "))
+so_nguyen = int(input("\nNhập vào một số nguyên n: "))
     
-    print("\nKết quả (Phương pháp Chuỗi):")
-    in_chu_so_dao_nguoc_chuoi(so_nguyen)
-except ValueError:
-    print("Lỗi: Đầu vào không phải là số nguyên hợp lệ.")
+print("\nKết quả (Phương pháp Chuỗi):")
+in_chu_so_dao_nguoc_chuoi(so_nguyen)
 
 #2
 def hoan_doi_xor(a, b):
