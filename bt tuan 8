@@ -1,0 +1,847 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNkWz9Gu+zzZV+GHcaB3PMW",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/25021768-hub/t-duy-t-nh-to-n-/blob/main/bt%20tuan%208\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ow_4IrBlge6_",
+        "outputId": "1b4bfcce-7b4d-436a-b59f-eda2c34760ed"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2 3\n",
+            "62.80 37.68\n"
+          ]
+        }
+      ],
+      "source": [
+        "#W8A1\n",
+        "class Cylinder:\n",
+        "    def __init__(self, radius, height):\n",
+        "        self.radius = radius\n",
+        "        self.height = height\n",
+        "        self.pi = 3.14\n",
+        "\n",
+        "    def get_surface_area(self):\n",
+        "        return 2 * self.pi * self.radius * (self.radius + self.height)\n",
+        "\n",
+        "    def get_volume(self):\n",
+        "        return self.pi * (self.radius ** 2) * self.height\n",
+        "\n",
+        "data = input().split()\n",
+        "r = float(data[0])\n",
+        "h = float(data[1])\n",
+        "cylinder = Cylinder(r, h)\n",
+        "surface_area = cylinder.get_surface_area()\n",
+        "volume = cylinder.get_volume()\n",
+        "print(f\"{surface_area:.2f} {volume:.2f}\")"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A2\n",
+        "class Date:\n",
+        "    def __init__(self, day, month, year):\n",
+        "        self.day = day\n",
+        "        self.month = month\n",
+        "        self.year = year\n",
+        "\n",
+        "    def is_leap_year(self):\n",
+        "        return (self.year % 400 == 0) or (self.year % 4 == 0 and self.year % 100 != 0)\n",
+        "\n",
+        "    def is_valid(self):\n",
+        "        if self.month < 1 or self.month > 12:\n",
+        "            return False\n",
+        "\n",
+        "        days_in_month = [31, 28, 31, 30, 31, 30,\n",
+        "                         31, 31, 30, 31, 30, 31]\n",
+        "\n",
+        "        if self.is_leap_year():\n",
+        "            days_in_month[1] = 29\n",
+        "\n",
+        "        if self.day < 1 or self.day > days_in_month[self.month - 1]:\n",
+        "            return False\n",
+        "\n",
+        "        return True\n",
+        "\n",
+        "    def next_day(self):\n",
+        "        days_in_month = [31, 28, 31, 30, 31, 30,\n",
+        "                         31, 31, 30, 31, 30, 31]\n",
+        "\n",
+        "        if self.is_leap_year():\n",
+        "            days_in_month[1] = 29\n",
+        "\n",
+        "        self.day += 1\n",
+        "\n",
+        "        if self.day > days_in_month[self.month - 1]:\n",
+        "            self.day = 1\n",
+        "            self.month += 1\n",
+        "\n",
+        "            if self.month > 12:\n",
+        "                self.month = 1\n",
+        "                self.year += 1\n",
+        "\n",
+        "        return f\"{self.day:02d}/{self.month:02d}/{self.year}\"\n",
+        "\n",
+        "date_input = input()\n",
+        "day,month,year = map(int,date_input.split(\"/\"))\n",
+        "date = Date(day,month,year)\n",
+        "print(date.next_day())\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "avluK8erjtkC",
+        "outputId": "9f4b7313-af24-44e8-b547-000113688c74"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "16/03/2025\n",
+            "17/03/2025\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A3\n",
+        "import math\n",
+        "class Point():\n",
+        "  def __init__(self,x,y):\n",
+        "    self.x = x\n",
+        "    self.y = y\n",
+        "  def is_origin(self):\n",
+        "    return self.x == 0 and self.y == 0\n",
+        "  def is_on_x_axis(self):\n",
+        "    return self.x == 0 and self.y != 0\n",
+        "  def is_on_y_axis(self):\n",
+        "    return self.y == 0 and self.x != 0\n",
+        "  def distance(self,other):\n",
+        "    return math.sqrt((self.x - other.x)**2 + (self.y - other.y)**2)\n",
+        "\n",
+        "\n",
+        "x,y = map(float,input().split())\n",
+        "M = Point(x,y)\n",
+        "O = Point(0,0)\n",
+        "if M.is_origin():\n",
+        "    print(\"M là gốc tọa độ\")\n",
+        "elif M.is_on_y_axis():\n",
+        "    print(\"M nằm trên trục tung\")\n",
+        "elif M.is_on_x_axis():\n",
+        "    print(\"M nằm trên trục hoành\")\n",
+        "else:\n",
+        "    print(\"M không nằm trên trục nào\")\n",
+        "\n",
+        "distance = M.distance(O)\n",
+        "print(f\"Khoảng cách từ M đến gốc tọa độ là {distance:.2f}\")"
+      ],
+      "metadata": {
+        "id": "cEpbyZS9nL2o",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "04922104-9fee-4c54-e8dc-8710dbc026ea"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2 3\n",
+            "M không nằm trên trục nào\n",
+            "Khoảng cách từ M đến gốc tọa độ là 3.61\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A4\n",
+        "class Calculator():\n",
+        "  def __init__(self,a,b):\n",
+        "    self.a = a\n",
+        "    self.b = b\n",
+        "  def set_numbers(self,a,b):\n",
+        "    self.a = a\n",
+        "    self.b = b\n",
+        "  def add(self):\n",
+        "    return self.a + self.b\n",
+        "  def subtract(self):\n",
+        "    return self.a - self.b\n",
+        "  def product(self):\n",
+        "    return self.a * self.b\n",
+        "  def divide(self):\n",
+        "    if self.b == 0:\n",
+        "      return \"Không thể chia cho 0\"\n",
+        "    return self.a / self.b\n",
+        "  def power(self):\n",
+        "    return self.a ** self.b\n",
+        "\n",
+        "  def mod(self):\n",
+        "    if self.b == 0:\n",
+        "      return \"Không thể chia cho 0\"\n",
+        "    return self.a % self.b\n",
+        "\n",
+        "a, b = map(float, input(\"Nhập hai số ban đầu: \").split())\n",
+        "calc = Calculator(a, b)\n",
+        "\n",
+        "while True :\n",
+        "  print(\"\\n MENU \")\n",
+        "  print(\"1. Cộng\")\n",
+        "  print(\"2. Trừ\")\n",
+        "  print(\"3. Nhân\")\n",
+        "  print(\"4. Chia\")\n",
+        "  print(\"5. Lũy thừa\")\n",
+        "  print(\"6. Chia lấy dư\")\n",
+        "  print(\"7. Cập nhật 2 số mới\")\n",
+        "  print(\"8. Thoát\")\n",
+        "  choice = input(\"Nhập lựa chọn của bạn: \")\n",
+        "\n",
+        "  if choice == \"1\":\n",
+        "    print(\"Kết quả phép cộng:\", calc.add())\n",
+        "  elif choice == \"2\":\n",
+        "    print(\"Kết quả phép trừ:\", calc.subtract())\n",
+        "  elif choice == \"3\":\n",
+        "    print(\"Kết quả phép nhân:\", calc.product())\n",
+        "  elif choice == \"4\":\n",
+        "    print(\"Kết quả phép chia:\", calc.divide())\n",
+        "  elif choice == \"5\":\n",
+        "    print(\"Kết quả phép lũy thừa:\", calc.power())\n",
+        "  elif choice == \"6\":\n",
+        "    print(\"Kết quả phép chia lấy dư:\", calc.mod())\n",
+        "  elif choice == \"7\":\n",
+        "    a, b = map(float, input(\"Nhập hai số mới: \").split())\n",
+        "    calc.set_numbers(a, b)\n",
+        "    print(\"Đã cập nhật số mới!\")\n",
+        "  elif choice == \"8\":\n",
+        "    print(\"Chương trình kết thúc!\")\n",
+        "    break\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YWltg0lZ3weS",
+        "outputId": "d1488ff5-ac1d-4682-e2d7-e1e090542715"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Nhập hai số ban đầu: 2 3\n",
+            "\n",
+            " MENU \n",
+            "1. Cộng\n",
+            "2. Trừ\n",
+            "3. Nhân\n",
+            "4. Chia\n",
+            "5. Lũy thừa\n",
+            "6. Chia lấy dư\n",
+            "7. Cập nhật 2 số mới\n",
+            "8. Thoát\n",
+            "Nhập lựa chọn của bạn: 2\n",
+            "Kết quả phép trừ: -1.0\n",
+            "\n",
+            " MENU \n",
+            "1. Cộng\n",
+            "2. Trừ\n",
+            "3. Nhân\n",
+            "4. Chia\n",
+            "5. Lũy thừa\n",
+            "6. Chia lấy dư\n",
+            "7. Cập nhật 2 số mới\n",
+            "8. Thoát\n",
+            "Nhập lựa chọn của bạn: 1\n",
+            "Kết quả phép cộng: 5.0\n",
+            "\n",
+            " MENU \n",
+            "1. Cộng\n",
+            "2. Trừ\n",
+            "3. Nhân\n",
+            "4. Chia\n",
+            "5. Lũy thừa\n",
+            "6. Chia lấy dư\n",
+            "7. Cập nhật 2 số mới\n",
+            "8. Thoát\n",
+            "Nhập lựa chọn của bạn: 7\n",
+            "Nhập hai số mới: 5 6\n",
+            "Đã cập nhật số mới!\n",
+            "\n",
+            " MENU \n",
+            "1. Cộng\n",
+            "2. Trừ\n",
+            "3. Nhân\n",
+            "4. Chia\n",
+            "5. Lũy thừa\n",
+            "6. Chia lấy dư\n",
+            "7. Cập nhật 2 số mới\n",
+            "8. Thoát\n",
+            "Nhập lựa chọn của bạn: 5\n",
+            "Kết quả phép lũy thừa: 15625.0\n",
+            "\n",
+            " MENU \n",
+            "1. Cộng\n",
+            "2. Trừ\n",
+            "3. Nhân\n",
+            "4. Chia\n",
+            "5. Lũy thừa\n",
+            "6. Chia lấy dư\n",
+            "7. Cập nhật 2 số mới\n",
+            "8. Thoát\n",
+            "Nhập lựa chọn của bạn: 8\n",
+            "Chương trình kết thúc!\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A5\n",
+        "class ShoppingCart:\n",
+        "  def __init__(self):\n",
+        "    self.product = []\n",
+        "  def add_product(self, name, price):\n",
+        "    self.product.append({\"name\" : name, \"price\" : price})\n",
+        "  def remove_product(self, name):\n",
+        "    for product in self.product:\n",
+        "      if product[\"name\"] == name:\n",
+        "        self.product.remove(product)\n",
+        "        return True\n",
+        "    return False\n",
+        "  def is_empty(self):\n",
+        "    return len(self.product) == 0\n",
+        "  def total_price(self):\n",
+        "    total = 0\n",
+        "    for product in self.product:\n",
+        "      total += product[\"price\"]\n",
+        "    return total\n",
+        "  def display(self):\n",
+        "    if self.is_empty():\n",
+        "      print(\"Giỏ hàng đang trống\")\n",
+        "    else :\n",
+        "      print(\"Danh sách sản phẩm trong giỏ hàng:\")\n",
+        "      for product in self.product:\n",
+        "        print(f\"- {product['name']}: {product['price']}\")\n",
+        "  def clear_cart(self):\n",
+        "    self.product.clear()\n",
+        "\n",
+        "cart = ShoppingCart()\n",
+        "\n",
+        "while True:\n",
+        "  print(\"\\n----- MENU -----\")\n",
+        "  print(\"2. Thêm sản phẩm\")\n",
+        "  print(\"3. Xóa sản phẩm theo tên\")\n",
+        "  print(\"4. Kiểm tra giỏ hàng có rỗng không\")\n",
+        "  print(\"5. Tính tổng tiền\")\n",
+        "  print(\"6. Hiển thị giỏ hàng\")\n",
+        "  print(\"7. Xóa toàn bộ giỏ hàng\")\n",
+        "\n",
+        "  choice = input(\"Nhập lựa chọn (2-7): \")\n",
+        "\n",
+        "  if choice == \"2\":\n",
+        "    name = input(\"Nhập tên sản phẩm: \")\n",
+        "    price = float(input(\"Nhập giá sản phẩm: \"))\n",
+        "    cart.add_product(name, price)\n",
+        "    print(\"Đã thêm sản phẩm!\")\n",
+        "\n",
+        "  elif choice == \"3\":\n",
+        "    name = input(\"Nhập tên sản phẩm cần xóa: \")\n",
+        "    if cart.remove_product(name):\n",
+        "      print(\"Đã xóa sản phẩm!\")\n",
+        "    else:\n",
+        "      print(\"Không tìm thấy sản phẩm!\")\n",
+        "\n",
+        "  elif choice == \"4\":\n",
+        "    if cart.is_empty():\n",
+        "      print(\"Giỏ hàng rỗng\")\n",
+        "    else:\n",
+        "      print(\"Giỏ hàng không rỗng\")\n",
+        "\n",
+        "  elif choice == \"5\":\n",
+        "    print(f\"Tổng tiền: {cart.total_price():.2f}\")\n",
+        "\n",
+        "  elif choice == \"6\":\n",
+        "    cart.display()\n",
+        "\n",
+        "  elif choice == \"7\":\n",
+        "    cart.clear_cart()\n",
+        "    print(\"Đã xóa toàn bộ giỏ hàng!\")\n",
+        "\n",
+        "  else:\n",
+        "    print(\"Lựa chọn không hợp lệ!\")\n",
+        "\n",
+        "  exit_choice = input(\"Có muốn thoát khỏi chương trình không? \")\n",
+        "  if exit_choice.lower() == \"yes\":\n",
+        "    print(\"Chương trình kết thúc!\")\n",
+        "    break"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Jt-3yUHh6tuU",
+        "outputId": "d93e7b5e-63e6-4587-b4ef-ef229b9c3b08"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "\n",
+            "----- MENU -----\n",
+            "2. Thêm sản phẩm\n",
+            "3. Xóa sản phẩm theo tên\n",
+            "4. Kiểm tra giỏ hàng có rỗng không\n",
+            "5. Tính tổng tiền\n",
+            "6. Hiển thị giỏ hàng\n",
+            "7. Xóa toàn bộ giỏ hàng\n",
+            "Nhập lựa chọn (2-7): 2\n",
+            "Nhập tên sản phẩm: chuối\n",
+            "Nhập giá sản phẩm: 10\n",
+            "Đã thêm sản phẩm!\n",
+            "Có muốn thoát khỏi chương trình không? yes\n",
+            "Chương trình kết thúc!\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A6\n",
+        "class Rectangle:\n",
+        "  def __init__(self,w,h):\n",
+        "    self.w = w\n",
+        "    self.h = h\n",
+        "  def area(self):\n",
+        "    return self.w * self.h\n",
+        "  def perimeter(self):\n",
+        "    return 2 * (self.w + self.h)\n",
+        "  def scale(self,k):\n",
+        "    self.w *= k\n",
+        "    self.h *= k\n",
+        "\n",
+        "w,h,k = map(float,input().split())\n",
+        "rect = Rectangle(w,h)\n",
+        "rect.scale(k)\n",
+        "print(f\"{rect.area():.2f}, {rect.perimeter():.2f}\")\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Hqcau88GEGCk",
+        "outputId": "015b25c0-da65-41ea-b15c-3efb2f9d6e86"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2 5 1.5\n",
+            "22.50, 21.00\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A7\n",
+        "import math\n",
+        "class Fraction:\n",
+        "  def __init__(self,num,den):\n",
+        "    if den == 0:\n",
+        "      raise ValueError(\"Không thể tạo phân số với mẫu là 0\")\n",
+        "    if den < 0 :\n",
+        "      num = -num\n",
+        "      den = -den\n",
+        "    g = math.gcd(num,den)\n",
+        "    self.num = num // g\n",
+        "    self.den = den // g\n",
+        "\n",
+        "  def add(self,other):\n",
+        "    num = self.num * other.den + self.den * other.num\n",
+        "    den = self.den * other.den\n",
+        "    return Fraction(num,den)\n",
+        "\n",
+        "  def sub(self,other):\n",
+        "    num = self.num * other.den - self.den * other.num\n",
+        "    den = self.den * other.den\n",
+        "    return Fraction(num,den)\n",
+        "\n",
+        "  def mul(self,other):\n",
+        "    num = self.num * other.num\n",
+        "    den = self.den * other.den\n",
+        "    return Fraction(num,den)\n",
+        "\n",
+        "  def div(self,other):\n",
+        "    return Fraction(self.num * other.den, self.den * other.num)\n",
+        "\n",
+        "  def __str__(self):\n",
+        "    return f\"{self.num}/{self.den}\"\n",
+        "\n",
+        "a, b, op, c, d = input().split()\n",
+        "a = int(a)\n",
+        "b = int(b)\n",
+        "c = int(c)\n",
+        "d = int(d)\n",
+        "f1 = Fraction(a,b)\n",
+        "f2 = Fraction(c,d)\n",
+        "if op == '+':\n",
+        "  result = f1.add(f2)\n",
+        "if op == '-':\n",
+        "  result = f1.sub(f2)\n",
+        "if op == '*':\n",
+        "  result = f1.mul(f2)\n",
+        "if op == '/':\n",
+        "  result = f1.div(f2)\n",
+        "print(result)\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "mqhl7dfHF3HF",
+        "outputId": "d4d70f18-3d0d-48de-b302-1a32d706915c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2 4 - 1 4\n",
+            "1/4\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A8\n",
+        "class BankAccount:\n",
+        "  def __init__(self, owner, balance):\n",
+        "    self.owner = owner\n",
+        "    self.balance = balance\n",
+        "  def deposit(self,x):\n",
+        "    self.balance += x\n",
+        "  def withdraw(self,x):\n",
+        "    if self.balance >= x:\n",
+        "      self.balance -= x\n",
+        "  def __str__(self):\n",
+        "    return f\"{self.owner} : {self.balance:.2f}\"\n",
+        "\n",
+        "owner, initial_balance = input().split()\n",
+        "balance = float(initial_balance)\n",
+        "\n",
+        "account = BankAccount(owner, balance)\n",
+        "\n",
+        "n = int(input())\n",
+        "for _ in range(n):\n",
+        "  cmd, x = input().split()\n",
+        "  x = float(x)\n",
+        "\n",
+        "  if cmd == \"DEPOSIT\":\n",
+        "    account.deposit(x)\n",
+        "  elif cmd == \"WITHDRAW\":\n",
+        "    account.withdraw(x)\n",
+        "\n",
+        "print(f\"{account.balance:.2f}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vsbWUML9Ka3o",
+        "outputId": "155bdd34-b8ac-409f-cedc-328697e53068"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "alice 100\n",
+            "3\n",
+            "DEPOSIT 50\n",
+            "WITHDRAW 120\n",
+            "WITHDRAW 20\n",
+            "10.00\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A9\n",
+        "class Student():\n",
+        "  def __init__(self,name):\n",
+        "    self.name = name\n",
+        "    self.scores = {}\n",
+        "  def add_score(self,subject,score):\n",
+        "    self.scores[subject] = score\n",
+        "  def avg(self):\n",
+        "    if not self.scores:\n",
+        "      return 0\n",
+        "    return sum(self.scores.values()) / len(self.scores)\n",
+        "  def rank(self):\n",
+        "    a = self.avg()\n",
+        "    if a >= 8:\n",
+        "      return \"Excellent\"\n",
+        "    elif a >= 6.5:\n",
+        "      return \"Good\"\n",
+        "    elif a >= 5:\n",
+        "      return \"Average\"\n",
+        "    else:\n",
+        "      return \"Poor\"\n",
+        "\n",
+        "name = input().strip()\n",
+        "n = int(input())\n",
+        "student = Student(name)\n",
+        "for _ in range(n):\n",
+        "  subject, score = input().split()\n",
+        "  student.add_score(subject, float(score))\n",
+        "\n",
+        "avg_score = student.avg()\n",
+        "rank = student.rank()\n",
+        "\n",
+        "print(f\"{student.name} {avg_score:.2f} {rank}\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "niUiHKmryvi2",
+        "outputId": "36ae5225-911f-4769-9e74-923eafcab0ff"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ha\n",
+            "2\n",
+            "A 8\n",
+            "B 9\n",
+            "Ha 8.50 Excellent\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A10\n",
+        "class Book:\n",
+        "  def __init__(self, title, author, year):\n",
+        "    self.title = title\n",
+        "    self.author = author\n",
+        "    self.year = year\n",
+        "\n",
+        "class Library:\n",
+        "  def __init__(self):\n",
+        "    self.books = []\n",
+        "\n",
+        "  def add(self,book):\n",
+        "    self.books.append(book)\n",
+        "\n",
+        "  def find_by_year(self, y):\n",
+        "    count = 0\n",
+        "    for book in self.books:\n",
+        "      if book.year == y:\n",
+        "        count += 1\n",
+        "    return count\n",
+        "\n",
+        "  def count_by_author(self,name):\n",
+        "    count = 0\n",
+        "    for book in self.books:\n",
+        "      if book.author == name:\n",
+        "        count += 1\n",
+        "    return count\n",
+        "\n",
+        "\n",
+        "n = int(input())\n",
+        "library = Library()\n",
+        "for _ in range(n):\n",
+        "    line = input().strip()\n",
+        "\n",
+        "    if line.startswith(\"ADD\"):\n",
+        "        _, data = line.split(\" \", 1)\n",
+        "        title, author, year = data.split(\";\")\n",
+        "        book = Book(title, author, int(year))\n",
+        "        library.add(book)\n",
+        "\n",
+        "    elif line.startswith(\"COUNTYEAR\"):\n",
+        "        _, year = line.split()\n",
+        "        print(library.find_by_year(int(year)))\n",
+        "\n",
+        "    elif line.startswith(\"COUNT\"):\n",
+        "        _, author = line.split(\" \", 1)\n",
+        "        print(library.count_by_author(author))\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "mZxJ5NSg1705",
+        "outputId": "7eb16f43-cefa-4aa1-ec42-7660a20b2d30"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "3\n",
+            "ADD A;X;2000\n",
+            "ADD B;X;2001\n",
+            "COUNT X\n",
+            "2\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#W8A11\n",
+        "import math\n",
+        "\n",
+        "class Point3D:\n",
+        "    def __init__(self, x, y, z):\n",
+        "        self.x = x\n",
+        "        self.y = y\n",
+        "        self.z = z\n",
+        "\n",
+        "    def vector_to(self, other):\n",
+        "        return Vector3D(\n",
+        "            other.x - self.x,\n",
+        "            other.y - self.y,\n",
+        "            other.z - self.z\n",
+        "        )\n",
+        "\n",
+        "\n",
+        "class Vector3D:\n",
+        "    def __init__(self, x, y, z):\n",
+        "        self.x = x\n",
+        "        self.y = y\n",
+        "        self.z = z\n",
+        "\n",
+        "    def cross(self, other):\n",
+        "        return Vector3D(\n",
+        "            self.y * other.z - self.z * other.y,\n",
+        "            self.z * other.x - self.x * other.z,\n",
+        "            self.x * other.y - self.y * other.x\n",
+        "        )\n",
+        "\n",
+        "    def dot(self, other):\n",
+        "        return self.x * other.x + self.y * other.y + self.z * other.z\n",
+        "\n",
+        "    def norm(self):\n",
+        "        return math.sqrt(self.dot(self))\n",
+        "\n",
+        "    def angle_with(self, other):\n",
+        "        cos_phi = abs(self.dot(other)) / (self.norm() * other.norm())\n",
+        "        return math.degrees(math.acos(cos_phi))\n",
+        "\n",
+        "\n",
+        "\n",
+        "A = Point3D(*map(float, input().split()))\n",
+        "B = Point3D(*map(float, input().split()))\n",
+        "C = Point3D(*map(float, input().split()))\n",
+        "D = Point3D(*map(float, input().split()))\n",
+        "\n",
+        "\n",
+        "AB = A.vector_to(B)\n",
+        "AC = A.vector_to(C)\n",
+        "BC = B.vector_to(C)\n",
+        "BD = B.vector_to(D)\n",
+        "\n",
+        "\n",
+        "n1 = AB.cross(AC)\n",
+        "n2 = BC.cross(BD)\n",
+        "\n",
+        "\n",
+        "phi = n1.angle_with(n2)\n",
+        "\n",
+        "print(f\"{phi:.2f}\")\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VDi4LPQ78n3q",
+        "outputId": "d434f9f8-ee11-4220-8d47-633333627739"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "0 4 5\n",
+            "1 7 6\n",
+            "0 5 9\n",
+            "1 7 2\n",
+            "8.19\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
